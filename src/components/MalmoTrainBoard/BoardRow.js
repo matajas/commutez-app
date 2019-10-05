@@ -13,8 +13,15 @@ function BoardRow({ train }) {
 
   return (
     <div className="row-container">
-      <div>{formatTime(train.AdvertisedTimeAtLocation)}</div>
-      <div>{formatTime(train.EstimatedTimeAtLocation)}</div>
+      <div className="row-data">
+        {formatTime(train.AdvertisedTimeAtLocation)}
+      </div>
+      <div className="row-data">
+        {formatTime(train.EstimatedTimeAtLocation)}
+      </div>
+      <div className="row-data-info">
+        {train.Deviation ? train.Deviation.join() : null}
+      </div>
     </div>
   );
 }

@@ -18,12 +18,9 @@ function MalmoTrainBoard() {
     <ul>
       <li>
         <div className="row-container">
-          <div>Tid</div>
-          <div>Ny tid</div>
-        </div>
-        <div className="row-container">
-          <div>Tid</div>
-          <div>Ny tid</div>
+          <div className="header-data">Tid</div>
+          <div className="header-data">Ny tid</div>
+          <div className="header-data-info">Info</div>
         </div>
       </li>
       {rows}

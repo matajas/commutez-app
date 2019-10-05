@@ -18,3 +18,23 @@ li {
   display: flex;
   justify-content: space-between;
 }
+
+.row-data {
+  width: 25%;
+}
+
+.row-data-info {
+  width: 50%;
+}
+
+.header-data {
+  color: yellow;
+  font-weight: bold;
+  width: 25%;
+}
+
+.header-data-info {
+  color: yellow;
+  font-weight: bold;
+  width: 50%;
+}
