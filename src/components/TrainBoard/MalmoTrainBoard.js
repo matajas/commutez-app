@@ -10,7 +10,7 @@ function MalmoTrainBoard() {
   const formatTime = date => {
     return (
       date &&
-      new Date(date).toLocaleTimeString([], {
+      new Date(date).toLocaleTimeString("sv-SE", {
         hour: "2-digit",
         minute: "2-digit"
       })
