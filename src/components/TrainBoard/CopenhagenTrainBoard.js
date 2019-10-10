@@ -1,12 +1,12 @@
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
-import trainsFromCopenhagen from "../../graphql/gql/trainsCopenhagen";
+import trainsCopenhagen from "../../graphql/gql/trainsCopenhagen";
 import "./Board.css";
 import BoardHeader from "./BoardHeader";
 import BoardRow from "./BoardRow";
 
 function CopenhagenTrainBoard() {
-  const { loading, data } = useQuery(trainsFromCopenhagen);
+  const { loading, data } = useQuery(trainsCopenhagen);
   const rows =
     data && data.trainsFromCopenhagen
       ? data.trainsFromCopenhagen.map((t, index) => {
