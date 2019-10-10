@@ -5,7 +5,7 @@ const trainsMalmo = gql`
     trainsFromMalmo {
       AdvertisedTimeAtLocation
       EstimatedTimeAtLocation
-      TimeAtLocation
+      TrackAtLocation
       Deviation
       OtherInformation
       Canceled

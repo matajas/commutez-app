@@ -2,6 +2,7 @@
   background-color: darkgrey;
   width: 80%;
   margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 ul {
@@ -20,21 +21,27 @@ li {
 }
 
 .row-data {
-  width: 25%;
+  width: 20%;
 }
 
 .row-data-info {
-  width: 50%;
+  width: 40%;
+}
+
+.row-data-delayed {
+  width: 20%;
+  color: red;
+  text-decoration: line-through;
 }
 
 .header-data {
   color: yellow;
   font-weight: bold;
-  width: 25%;
+  width: 20%;
 }
 
 .header-data-info {
   color: yellow;
   font-weight: bold;
-  width: 50%;
+  width: 40%;
 }
