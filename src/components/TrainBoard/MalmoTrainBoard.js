@@ -1,12 +1,13 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import trainsMalmo from "../../graphql/gql/trainsMalmo";
 import "./Board.css";
 import BoardHeader from "./BoardHeader";
 import BoardRow from "./BoardRow";
+import BoardTitle from "./BoardTitle";
 
 function MalmoTrainBoard() {
-  const { loading, data } = useQuery(trainsMalmo);
+  const { loading, data, refetch } = useQuery(trainsMalmo);
   const formatTime = date => {
     return (
       date &&
@@ -34,15 +35,15 @@ function MalmoTrainBoard() {
       : null;
 
   const board = (
-    <div>
-      <p>Malmö C</p>
+    <Fragment>
+      <BoardTitle station="Malmö C" refetch={refetch} />
       <ul>
         <li>
           <BoardHeader />
         </li>
         {rows}
       </ul>
-    </div>
+    </Fragment>
   );
   return <div className="train-board">{loading ? "loading..." : board}</div>;
 }

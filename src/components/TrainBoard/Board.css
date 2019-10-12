@@ -44,4 +44,27 @@ li {
   color: yellow;
   font-weight: bold;
   width: 40%;
+  padding-left: 2rem;
+}
+
+.board-title {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.refreshButton {
+  border-radius: 6px;
+  cursor: pointer;
+  color: #666666;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 0.5rem 2rem;
+  margin-top: 0.8rem;
+  outline: none;
+}
+.refreshButton:hover {
+  background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+  background-color: #f6f6f6;
 }

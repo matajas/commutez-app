@@ -1,12 +1,13 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import trainsCopenhagen from "../../graphql/gql/trainsCopenhagen";
 import "./Board.css";
 import BoardHeader from "./BoardHeader";
 import BoardRow from "./BoardRow";
+import BoardTitle from "./BoardTitle";
 
 function CopenhagenTrainBoard() {
-  const { loading, data } = useQuery(trainsCopenhagen);
+  const { loading, data, refetch } = useQuery(trainsCopenhagen);
   const rows =
     data && data.trainsFromCopenhagen
       ? data.trainsFromCopenhagen.map((t, index) => {
@@ -25,15 +26,15 @@ function CopenhagenTrainBoard() {
       : null;
 
   const board = (
-    <div>
-      <p>Ørestad</p>
+    <Fragment>
+      <BoardTitle station="Ørestad" refetch={refetch} />
       <ul>
         <li>
           <BoardHeader />
         </li>
         {rows}
       </ul>
-    </div>
+    </Fragment>
   );
   return <div className="train-board">{loading ? "loading..." : board}</div>;
 }
