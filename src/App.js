@@ -1,16 +1,14 @@
 import React from "react";
-import "./App.css";
 import client from "./graphql/client";
 import { ApolloProvider } from "@apollo/react-hooks";
-import MalmoTrainBoard from "./components/TrainBoard/MalmoTrainBoard";
-import CopenhagenTrainBoard from "./components/TrainBoard/CopenhagenTrainBoard";
+import Main from "./components/Main";
+import "./App.css";
 
 function App() {
   return (
     <ApolloProvider client={client}>
       <div className="App">
-        <MalmoTrainBoard />
-        <CopenhagenTrainBoard />
+        <Main />
       </div>
     </ApolloProvider>
   );

@@ -1,0 +1,18 @@
+.headerContainer {
+  background-color: darkgrey;
+  width: 80%;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.toggleTitle {
+  padding-top: 0.4rem;
+  padding-left: 0.5rem;
+}
+
+.toggleContainer {
+  padding-right: 0.5rem;
+}

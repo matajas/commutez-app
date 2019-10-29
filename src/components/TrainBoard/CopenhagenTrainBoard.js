@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import trainsCopenhagen from "../../graphql/gql/trainsCopenhagen";
 import "./Board.css";
@@ -8,6 +8,11 @@ import BoardTitle from "./BoardTitle";
 
 function CopenhagenTrainBoard() {
   const { loading, data, refetch } = useQuery(trainsCopenhagen);
+
+  useEffect(() => {
+    refetch();
+  });
+
   const rows =
     data && data.trainsFromCopenhagen
       ? data.trainsFromCopenhagen.map((t, index) => {
