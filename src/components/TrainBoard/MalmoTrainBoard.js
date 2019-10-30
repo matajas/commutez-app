@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment, useEffect } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import trainsMalmo from "../../graphql/gql/trainsMalmo";
@@ -7,11 +8,13 @@ import BoardRow from "./BoardRow";
 import BoardTitle from "./BoardTitle";
 
 function MalmoTrainBoard() {
-  const { loading, data, refetch } = useQuery(trainsMalmo);
+  const { loading, data, refetch } = useQuery(trainsMalmo, {
+    notifyOnNetworkStatusChange: true
+  });
 
   useEffect(() => {
     refetch();
-  });
+  }, []);
 
   const formatTime = date => {
     return (

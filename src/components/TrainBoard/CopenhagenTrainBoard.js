@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment, useEffect } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import trainsCopenhagen from "../../graphql/gql/trainsCopenhagen";
@@ -7,11 +8,13 @@ import BoardRow from "./BoardRow";
 import BoardTitle from "./BoardTitle";
 
 function CopenhagenTrainBoard() {
-  const { loading, data, refetch } = useQuery(trainsCopenhagen);
+  const { loading, data, refetch } = useQuery(trainsCopenhagen, {
+    notifyOnNetworkStatusChange: true
+  });
 
   useEffect(() => {
     refetch();
-  });
+  }, []);
 
   const rows =
     data && data.trainsFromCopenhagen
