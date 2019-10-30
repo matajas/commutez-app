@@ -1,5 +1,11 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { Fragment, useState, useEffect } from "react";
+import React, {
+  Fragment,
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useLayoutEffect
+} from "react";
 import MalmoTrainBoard from "./TrainBoard/MalmoTrainBoard";
 import CopenhagenTrainBoard from "./TrainBoard/CopenhagenTrainBoard";
 import AppHeader from "./AppHeader/AppHeader";
@@ -7,13 +13,18 @@ import AppHeader from "./AppHeader/AppHeader";
 export default function Main() {
   const [commuteMode, setCommuteMode] = useState(true);
   const [View, setView] = useState(null);
+  const setBoardsRef = useRef();
+  const pullLoad = useRef(false);
 
   const handleToggle = () => {
+    pullLoad.current = true;
     setCommuteMode(!commuteMode);
   };
 
-  const setBoards = () => {
+  const setBoards = useCallback(() => {
+    setView(null);
     if (!commuteMode) {
+      pullLoad.current = false;
       setView(
         <Fragment>
           <MalmoTrainBoard />
@@ -28,17 +39,88 @@ export default function Main() {
           ) : (
             <CopenhagenTrainBoard />
           );
+
+        pullLoad.current = false;
         setView(viewToSet);
       });
     }
-  };
+  }, [commuteMode]);
+
+  useLayoutEffect(() => {
+    const pStart = { x: 0, y: 0 };
+    const pStop = { x: 0, y: 0 };
+
+    setBoardsRef.current = setBoards;
+
+    const swipeStart = e => {
+      if (typeof e["targetTouches"] !== "undefined") {
+        const touch = e.targetTouches[0];
+        pStart.x = touch.screenX;
+        pStart.y = touch.screenY;
+      } else {
+        pStart.x = e.screenX;
+        pStart.y = e.screenY;
+      }
+    };
+
+    const swipeEnd = e => {
+      if (typeof e["changedTouches"] !== "undefined") {
+        const touch = e.changedTouches[0];
+        pStop.x = touch.screenX;
+        pStop.y = touch.screenY;
+      } else {
+        pStop.x = e.screenX;
+        pStop.y = e.screenY;
+      }
+
+      swipeCheck();
+    };
+
+    const swipeCheck = () => {
+      const changeY = pStart.y - pStop.y;
+      const changeX = pStart.x - pStop.x;
+      if (isPullDown(changeY, changeX)) {
+        pullLoad.current = true;
+        setBoardsRef.current();
+      }
+    };
+
+    const isPullDown = (dY, dX) => {
+      // methods of checking slope, length, direction of line created by swipe action
+      return (
+        dY < 0 &&
+        ((Math.abs(dX) <= 100 && Math.abs(dY) >= 300) ||
+          (Math.abs(dX) / Math.abs(dY) <= 0.3 && dY >= 60))
+      );
+    };
+
+    document.addEventListener(
+      "touchstart",
+      e => {
+        swipeStart(e);
+      },
+      false
+    );
+    document.addEventListener(
+      "touchend",
+      e => {
+        swipeEnd(e);
+      },
+      false
+    );
+    return () => {
+      document.removeEventListener("touchstart", swipeStart);
+      document.removeEventListener("touchend", swipeEnd);
+    };
+  }, [setBoards]);
 
   useEffect(() => {
     setBoards();
-  }, [commuteMode]);
+  }, [commuteMode, setBoards]);
 
   return (
     <Fragment>
+      {pullLoad.current && <div>Loading...</div>}
       <AppHeader commuteMode={commuteMode} onToggleView={handleToggle} />
       {View}
     </Fragment>

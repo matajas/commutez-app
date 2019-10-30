@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import trainsMalmo from "../../graphql/gql/trainsMalmo";
 import "./Board.css";
@@ -8,6 +8,11 @@ import BoardTitle from "./BoardTitle";
 
 function MalmoTrainBoard() {
   const { loading, data, refetch } = useQuery(trainsMalmo);
+
+  useEffect(() => {
+    refetch();
+  });
+
   const formatTime = date => {
     return (
       date &&
