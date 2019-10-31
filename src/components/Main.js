@@ -94,14 +94,14 @@ export default function Main() {
       );
     };
 
-    document.addEventListener(
+    window.addEventListener(
       "touchstart",
       e => {
         swipeStart(e);
       },
       false
     );
-    document.addEventListener(
+    window.addEventListener(
       "touchend",
       e => {
         swipeEnd(e);
@@ -109,8 +109,8 @@ export default function Main() {
       false
     );
     return () => {
-      document.removeEventListener("touchstart", swipeStart);
-      document.removeEventListener("touchend", swipeEnd);
+      window.removeEventListener("touchstart", swipeStart);
+      window.removeEventListener("touchend", swipeEnd);
     };
   }, [setBoards]);
 
