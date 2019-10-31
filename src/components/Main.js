@@ -9,6 +9,7 @@ import React, {
 import MalmoTrainBoard from "./TrainBoard/MalmoTrainBoard";
 import CopenhagenTrainBoard from "./TrainBoard/CopenhagenTrainBoard";
 import AppHeader from "./AppHeader/AppHeader";
+import Spinner from "./common/Spinner";
 
 export default function Main() {
   const [commuteMode, setCommuteMode] = useState(true);
@@ -120,7 +121,11 @@ export default function Main() {
 
   return (
     <Fragment>
-      {pullLoad.current && <div>Loading...</div>}
+      {pullLoad.current && (
+        <div>
+          <Spinner />
+        </div>
+      )}
       <AppHeader commuteMode={commuteMode} onToggleView={handleToggle} />
       {View}
     </Fragment>

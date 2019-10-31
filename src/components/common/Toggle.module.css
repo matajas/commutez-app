@@ -49,7 +49,7 @@ input:checked + .slider:before {
   transform: translateX(55px);
 }
 
- .slider:after {
+.slider:after {
   content: "OFF";
   color: white;
   display: block;
