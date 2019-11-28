@@ -10,6 +10,7 @@ import MalmoTrainBoard from "./TrainBoard/MalmoTrainBoard";
 import CopenhagenTrainBoard from "./TrainBoard/CopenhagenTrainBoard";
 import AppHeader from "./AppHeader/AppHeader";
 import Spinner from "./common/Spinner";
+import "../App.css";
 
 export default function Main() {
   const [commuteMode, setCommuteMode] = useState(true);
@@ -122,7 +123,7 @@ export default function Main() {
   return (
     <Fragment>
       {pullLoad.current && (
-        <div>
+        <div className="pull-refresh-container">
           <Spinner />
         </div>
       )}

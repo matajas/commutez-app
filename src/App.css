@@ -12,3 +12,7 @@
 .App-link {
   color: #09d3ac;
 }
+
+.pull-refresh-container {
+  padding: 2.5rem;
+}
