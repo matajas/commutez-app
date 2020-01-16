@@ -1,16 +1,35 @@
 .headerContainer {
-  background-color: darkgrey;
   width: 80%;
-  padding-top: 1.5rem;
+  background-color: darkgrey;
+  padding-top: 0.5rem;
   padding-bottom: 1.5rem;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   display: flex;
+  flex-direction: column;
+}
+
+.headerTitleContainer {
+  display: flex;
+  justify-content: left;
+  padding-left: 0.5rem;
+  font-size: 2.5rem;
+}
+
+.headerTitle {
+  padding-left: 1rem;
+}
+
+.commuteModeContainer {
+  background-color: darkgrey;
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
+  padding-left: 0.5rem;
+  padding-top: 1.5rem;
 }
 
 .toggleTitle {
   padding-top: 0.4rem;
-  padding-left: 0.5rem;
 }
 
 .toggleContainer {

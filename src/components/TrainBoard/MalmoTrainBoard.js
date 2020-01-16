@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import trainsMalmo from "../../graphql/gql/trainsMalmo";
 import "./Board.css";
@@ -8,8 +8,15 @@ import BoardRow from "./BoardRow";
 import BoardTitle from "./BoardTitle";
 
 function MalmoTrainBoard() {
+  const savedStation = localStorage.getItem("station");
+  const [currentStation, setCurrentStation] = useState(
+    savedStation ? savedStation : "M"
+  );
   const { loading, data, refetch } = useQuery(trainsMalmo, {
-    notifyOnNetworkStatusChange: true
+    notifyOnNetworkStatusChange: true,
+    variables: {
+      stationId: currentStation
+    }
   });
 
   useEffect(() => {
@@ -44,7 +51,16 @@ function MalmoTrainBoard() {
 
   const board = (
     <Fragment>
-      <BoardTitle station="Malmö C" refetch={refetch} />
+      <BoardTitle
+        station={currentStation === "M" ? "Malmö C" : "Hyllie"}
+        refetch={refetch}
+        allowSwitching
+        onSwitchStation={() => {
+          const newStation = currentStation === "M" ? "Hie" : "M";
+          setCurrentStation(newStation);
+          localStorage.setItem("station", newStation);
+        }}
+      />
       <ul>
         <li>
           <BoardHeader />
