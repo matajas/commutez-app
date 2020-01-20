@@ -1,8 +1,8 @@
 import { gql } from "apollo-boost";
 
 const trainsCopenhagen = gql`
-  {
-    trainsFromCopenhagen {
+  query($stationId: String) {
+    trainsFromCopenhagen(stationId: $stationId) {
       time
       rtTime
       finalStop

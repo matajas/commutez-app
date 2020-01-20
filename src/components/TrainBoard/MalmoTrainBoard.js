@@ -7,6 +7,11 @@ import BoardHeader from "./BoardHeader";
 import BoardRow from "./BoardRow";
 import BoardTitle from "./BoardTitle";
 
+const stationMap = {
+  M: "Malmö C",
+  Hie: "Hyllie"
+};
+
 function MalmoTrainBoard() {
   const savedStation = localStorage.getItem("station");
   const [currentStation, setCurrentStation] = useState(
@@ -52,7 +57,7 @@ function MalmoTrainBoard() {
   const board = (
     <Fragment>
       <BoardTitle
-        station={currentStation === "M" ? "Malmö C" : "Hyllie"}
+        station={stationMap[currentStation]}
         refetch={refetch}
         allowSwitching
         onSwitchStation={() => {
