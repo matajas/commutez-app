@@ -9,6 +9,7 @@ const trainsCopenhagen = gql`
       track
       rtTrack
     }
+    bourbonPrice
   }
 `;
 
