@@ -10,7 +10,7 @@ export default function AppHeader({ onToggleView, commuteMode }) {
         <span className={styles.headerTitle}>Commutez</span>
       </div>
       <div className={styles.commuteModeContainer}>
-        <div className={styles.toggleTitle}>Commute mode</div>
+        <div className={styles.toggleTitle}>Use current location</div>
         <div className={styles.toggleContainer}>
           <Toggle isChecked={commuteMode} onClick={onToggleView} />
         </div>
